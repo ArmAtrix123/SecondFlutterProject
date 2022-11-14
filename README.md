@@ -1,16 +1,10 @@
-# sqllitemaybe
+ПРАКТИЧЕСКАЯ РАБОТА №2 Тема: реализовать таблицы для предметной области “Магазин продуктов” Цель работы: реализовать 9 таблиц, инициализированные БД для всех платформ, создание таблиц, обновление таблиц, заполнение таблиц данными, удаление базы данных. Ход работы: Создаём необходимые файлы:
 
-A new Flutter project.
+файлы common, core, date - model и domain - entity В файле core создаём следующий файл: data_base_helper.dart В нём код, отвечающий за ядро бд. Проверка платформы и настройка БД Методы для добавления, удаления БД и обновления таблиц, Метод для заполнения данными пару таблиц: Все Entity:
 
-## Getting Started
+user_entity type_entity sklad_entity role_entity product_entity country_entity color_entity check adress_entity
+Модели
 
-This project is a starting point for a Flutter application.
+user type sklad role product country color check adress
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Вывод: в ходе выполнения данной практической работы, получил навыки по созданию 9 таблиц, создании и настройке базы данных с необходимыми методами
