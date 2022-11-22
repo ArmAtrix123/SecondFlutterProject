@@ -7,11 +7,11 @@ class Role extends RoleEntity {
 
   Map<String, dynamic> toMap() {
     return {
-      'role': name,
+      'name': name,
     };
   }
 
   factory Role.toFromMap(Map<String, dynamic> json) {
-    return Role(name: json['role']);
+    return Role(name: json['name']);
   }
 }

@@ -6,13 +6,15 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:sqllitemaybe/common/data_base_request.dart';
 import 'package:sqllitemaybe/data/model/role.dart';
 import 'package:sqllitemaybe/domain/entity/role_entity.dart';
+import 'package:sqflite_common/sqlite_api.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class DataBaseHelper {
   static final DataBaseHelper instance = DataBaseHelper._instance();
 
   DataBaseHelper._instance();
 
-  final int _version = 1;
+  final int _version = 2;
   late final String _pathDB;
   late final Directory _appDocumentDirectory;
   late final Database database;
@@ -21,9 +23,18 @@ class DataBaseHelper {
     _appDocumentDirectory =
         await path_provider.getApplicationDocumentsDirectory();
 
-    _pathDB = join(_appDocumentDirectory.path, 'test.db');
+    _pathDB = join(_appDocumentDirectory.path, 'test1.db');
 
     if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+      sqfliteFfiInit();
+      var databaseFactory = databaseFactoryFfi;
+      database = await databaseFactory.openDatabase(_pathDB,
+          options: OpenDatabaseOptions(
+              version: _version,
+              onCreate: (db, version) => onCreateTable(
+                    db,
+                  ),
+              onUpgrade: ((db, oldVersion, newVersion) => onUpdateTable(db))));
     } else {
       database = await openDatabase(
         _pathDB,

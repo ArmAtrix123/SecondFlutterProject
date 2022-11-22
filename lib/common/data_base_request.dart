@@ -44,10 +44,10 @@ abstract class DataBaseRequest {
         "login"	TEXT NOT NULL UNIQUE,
         "password"	TEXT NOT NULL,
         "id_role"	INTEGER,
-        FOREIGN KEY("id_role") REFERENCES "$tableRole"("id") ON DELETE CASCADE,
-        PRIMARY KEY("id" AUTOINCREMENT) )''';
+        FOREIGN KEY("id_role") REFERENCES "$tableRole"("id_role") ON DELETE CASCADE,
+        PRIMARY KEY("id_user" AUTOINCREMENT) )''';
   static const String _createTableSklad = '''CREATE TABLE "$tableSklad" (
-        "id_sklad" PRIMARY KEY,
+        "id_sklad"  INTEGER,
         "name"	TEXT NOT NULL,
         "id_adress" INTEGER NOT NULL,
         "id_user" INTEGER NOT NULL,
@@ -56,8 +56,7 @@ abstract class DataBaseRequest {
         PRIMARY KEY("id_sklad" AUTOINCREMENT) )
         ''';
 
-  static const String _createTableAdress =
-      '''CREATE TABLE "$tableAddress" (
+  static const String _createTableAdress = '''CREATE TABLE "$tableAddress" (
         "id_adress"	INTEGER,
         "name"	TEXT NOT NULL,
         PRIMARY KEY("id_adress" AUTOINCREMENT) )
@@ -87,8 +86,7 @@ abstract class DataBaseRequest {
         FOREIGN KEY("id_product") REFERENCES "$tableProduct"("id_product") ON DELETE CASCADE,
         PRIMARY KEY("id_check" AUTOINCREMENT) )''';
 
-  static const String _createTableType =
-      '''CREATE TABLE "$tableType" (
+  static const String _createTableType = '''CREATE TABLE "$tableType" (
         "id_Type"	INTEGER NOT NULL ,
         "name" TEXT NOT NULL,
         PRIMARY KEY("id_Type" AUTOINCREMENT) )''';
